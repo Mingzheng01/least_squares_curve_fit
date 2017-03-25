@@ -56,3 +56,14 @@ std::vector<float> min_and_max_x(std::vector<Point>& points) {
 	
 	return min_and_max;
 }
+
+int get_rand(int min, int max) {
+
+     if (min < max == false) {
+	min = -10;
+        max = 10;
+     }
+
+     return rand() % (max - min) + min + 1; 
+
+}

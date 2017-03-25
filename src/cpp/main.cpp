@@ -40,15 +40,16 @@ void fit_n_order_curve_from_to(int order, std::string in_file_name, std::string 
 	std::vector<float> min_max;
 	min_max = min_and_max_x(in_points);
 	
-	out_points = f.f_on_domain_as_xy_points(min_max[0], min_max[1]);
+	// Show f(x) on domain [min_x-10, max_x+10] to see where function is coming from and going to
+	out_points = f.f_on_domain_as_xy_points(min_max[0] - in_points.capacity() / 10, min_max[1] + in_points.capacity() / 10);
 	
 	write_csv(out_points, out_file_name);
 }
 
 int main(int argc, char* argv[]) {
 	int order = 2;
-	std::string in_file_name = "..\\..\\data\\input.csv";
-	std::string out_file_name = "..\\..\\data\\output.csv";
+	std::string in_file_name = "../../data/input.csv";
+	std::string out_file_name = "../../data/output.csv";
 	
 	if (argc == 4) {
 		in_file_name = argv[1];

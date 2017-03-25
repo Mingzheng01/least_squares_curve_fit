@@ -92,13 +92,13 @@ bool test_data(const std::string& file_name) {
 	points.reserve(b+1);
 	
 	// f(x) = x^3 + 2x - 7
-	// f(x) = sin(x)
-	for (int i = 0; i <= b; i++) {
+	// f(x) = sin(x) + rand(-50, 50)
+	for (int i = 0; i <= b; i+=10) {
 		//points[i].x = i;
 		//points[i].y = i*i*i + 2*i - 7;
 
 		points[i].x = i;
-		points[i].y = sin(i * pi / 180) * 180 / pi;
+		points[i].y = (sin(i * pi / 180) * 180 / pi) + get_rand(-50, 50) + i;
 	}
 	
 	write_csv(points, file_name);
