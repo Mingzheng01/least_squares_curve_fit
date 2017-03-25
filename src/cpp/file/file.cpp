@@ -85,16 +85,24 @@ bool write_csv(std::vector<Point>& points, const std::string& file_name) {
 bool test_data(const std::string& file_name) {
 	
 	int a = 0;
-	int b = 45;
+	int b = 360;
+	float pi = 3.14159265;
 	
 	std::vector<Point> points;
 	points.reserve(b+1);
 	
 	// f(x) = x^3 + 2x - 7
+	// f(x) = sin(x)
 	for (int i = 0; i <= b; i++) {
+		//points[i].x = i;
+		//points[i].y = i*i*i + 2*i - 7;
+
 		points[i].x = i;
-		points[i].y = i*i*i + 2*i - 7;
+		points[i].y = sin(i * pi / 180) * 180 / pi;
 	}
 	
 	write_csv(points, file_name);
 }
+
+
+
