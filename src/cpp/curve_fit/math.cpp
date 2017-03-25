@@ -1,6 +1,6 @@
 #include <vector>
-#include "..\..\..\include\Point.h"
-#include "..\exception\nan_exception.cpp"
+#include "../../../include/Point.h"
+#include "../exception/nan_exception.cpp"
 #include <math.h>
 
 /*

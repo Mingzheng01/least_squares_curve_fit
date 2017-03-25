@@ -1,5 +1,5 @@
 #include <exception>
-#include "..\..\..\include\Point.h"
+#include "../../../include/Point.h"
 #include "math.cpp"
 #include "linear_algebra.cpp"
 

@@ -3,10 +3,10 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-#include "..\..\include\Point.h"
-#include "curve_fit\least_squares_curve_fit.cpp"
-#include "data_structures\Polynomial_Function.cpp"
-#include "file\file.cpp"	
+#include "../../include/Point.h"
+#include "curve_fit/least_squares_curve_fit.cpp"
+#include "data_structures/Polynomial_Function.cpp"
+#include "file/file.cpp"	
 
 void fit_n_order_curve_from_to(int order, std::string in_file_name, std::string out_file_name) {
 	std::vector<Point> in_points;

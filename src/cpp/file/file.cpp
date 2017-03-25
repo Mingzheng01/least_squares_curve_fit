@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
-#include "..\..\..\include\Point.h"
+#include "../../../include/Point.h"
 
 bool file_exists(const std::string& file_name) {
 	bool exit_status = false;

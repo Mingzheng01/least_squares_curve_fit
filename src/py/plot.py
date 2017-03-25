@@ -19,6 +19,12 @@ def curve_fit(in_file_name, out_file_name, order):
 		print(command)
 		os.system(command)
 
+	if platform_str == linux:
+		command = '../cpp/./main' + " " + '\"' + in_file_name + '\"' + " " + '\"' + out_file_name + '\"' + " " + str(order)
+		print(command)
+		os.system(command)
+
+
 def plot(in_file_name, out_file_name, order):
 	curve_fit(in_file_name, out_file_name, order)
 
