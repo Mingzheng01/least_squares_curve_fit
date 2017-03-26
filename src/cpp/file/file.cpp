@@ -86,14 +86,15 @@ bool test_data(const std::string& file_name) {
 	
 	int a = 0;
 	int b = 360;
+	int interval = 10;
 	float pi = 3.14159265;
 	
 	std::vector<Point> points;
-	points.reserve(b+1);
+	points.reserve((b+1));
 	
 	// f(x) = x^3 + 2x - 7
 	// f(x) = sin(x) + rand(-50, 50)
-	for (int i = 0; i <= b; i+=10) {
+	for (int i = 0; i <= b; i+=interval) {
 		//points[i].x = i;
 		//points[i].y = i*i*i + 2*i - 7;
 
