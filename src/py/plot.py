@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import csv
 import platform
 import os
+import collections
 import numpy as np
 
 # http://www.programming-techniques.com/2011/09/numerical-methods-inverse-of-nxn-matrix.html
@@ -24,8 +25,4 @@ def curve_fit(in_file_name, out_file_name, order):
 		command = '../cpp/./main' + " " + '\"' + in_file_name + '\"' + " " + '\"' + out_file_name + '\"' + " " + str(order)
 		print(command)
 		os.system(command)
-
-
-
-
 

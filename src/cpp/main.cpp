@@ -48,8 +48,11 @@ void fit_n_order_curve_from_to(int order, std::string in_file_name, std::string 
 
 int main(int argc, char* argv[]) {
 	int order = 2;
-	std::string in_file_name = "../../data/input.csv";
-	std::string out_file_name = "../../data/output.csv";
+	std::string in_file_name;
+	std::string out_file_name ;
+
+	//in_file_name = "../../data/input.csv";
+	//out_file_name = "../../data/output.csv";
 	
 	if (argc == 4) {
 		in_file_name = argv[1];

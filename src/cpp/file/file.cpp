@@ -99,7 +99,10 @@ bool test_data(const std::string& file_name) {
 		//points[i].y = i*i*i + 2*i - 7;
 
 		points[i].x = i;
-		points[i].y = (sin(i * pi / 180) * 180 / pi) + get_rand(-50, 50) + i;
+		points[i].y = (sin(i * pi / 180) * 180 / pi) + i + get_rand(-50, 50);
+
+		//points[i].x = i;
+		//points[i].y = (sin(i * pi / 180) * 180 / pi) + i + get_rand(-50, 50);
 	}
 	
 	write_csv(points, file_name);

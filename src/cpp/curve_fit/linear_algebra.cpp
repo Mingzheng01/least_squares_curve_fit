@@ -2,6 +2,45 @@
 #include <stdexcept>
 
 /*
+Returns the determinant of a 2x2 matrix A
+
+                     |a b|
+1. Compute: det(A) = |c d| = ad - bc
+
+*/
+float determinant_2x2(std::vector< std::vector<float> > A) {
+	if (A.capacity() != 2 || A[0].capacity() != 2) {
+		// throw error
+	}
+
+	//                     |a b|
+    //1. Compute: det(A) = |c d| = ad - bc
+	float determinant = (A[0][0] * A[1][1]) - (A[0][1] * A[1][0]);
+	
+	//	throw error if det(A) evaluates to NaN
+	if (isnan(determinant)) {
+		// throw error
+	}
+
+	return determinant;
+}
+
+
+/*
+Returns the determinant of an nxn matrix
+*/
+float determinant(std::vector< std::vector<float> >& A) {
+	if (A.capacity() == 2 && A[0].capacity() == 2) {
+		// det(A) = ad - bc
+		return determinant_2x2(A);
+	}
+
+	// cofactor expansion
+	
+	return 0;
+}
+
+/*
 Returns the scalar (dot) product of two vectors
 - let * be the dot product operator
 - let c be a scalar (constant) value
@@ -86,15 +125,6 @@ std::vector<float> mult_matrix_by_vector(std::vector< std::vector<float> >& A, s
 	
 	// 2. Return: x
 	return x;
-}
-
-/*
-Returns the determinant of a matrix
-*/
-float determinant(std::vector< std::vector<float> >& A) {
-	// TODO - Implement function
-	
-	return 0;
 }
 
 /*

@@ -4,6 +4,30 @@
 #include "linear_algebra.cpp"
 
 /*
+* http://mathworld.wolfram.com/LeastSquaresFittingLogarithmic.html
+*/
+std::vector<float> logarithmic_least_squares_fit(std::vector<Point>&points) {
+	float b;
+	float a;
+	int n;		// number of points
+
+	// Compute B
+		// Compute Numerator
+
+		// Compute Denominator
+
+		// Divide
+
+	// Compute A
+
+
+	// Put A in position 0, put B in position 1
+
+	// Return vector
+}
+
+
+/*
 Least Squares Curve Fit to nth order
 
 Theorem: Ax = d  <=>  (A^-1)d = x
