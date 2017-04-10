@@ -2,35 +2,35 @@
 #include <cstdio>
 #include <cmath>
 #include "../../../include/Point.h"
-#include "../../../include/Logarithmic_Function.h"
+#include "../../../include/Exponential_Function.h"
 #include <math.h>
 
 
-float a;
-float b;
+float A;
+float B;
 
 /*
-Constructs Logarithmic_Function from coeffients A and B
+Constructs Exponential_Function from coeffients A and B
 */
-Logarithmic_Function::Logarithmic_Function(float a, float b) {
-	this-> a = a;
-	this-> b = b;
+Exponential_Function::Exponential_Function(float A, float B) {
+	this-> A = A;
+	this-> B = B;
 }
 
 /*
 Destructor
 */
-Logarithmic_Function::~Logarithmic_Function() {
+Exponential_Function::~Exponential_Function() {
 	;
 }
 
 
-float Logarithmic_Function::f(float x) {
-	return a + b * log(x);
+float Exponential_Function::f(float x) {
+	return A * exp(B * x);
 }
 
 
-std::vector<Point> Logarithmic_Function::f_on_domain_as_xy_points(float a, float b) {
+std::vector<Point> Exponential_Function::f_on_domain_as_xy_points(float a, float b) {
 	std::vector<Point> f_of_x;
 	
 	if (a > b) {
@@ -53,6 +53,6 @@ std::vector<Point> Logarithmic_Function::f_on_domain_as_xy_points(float a, float
 	return f_of_x;
 }
 
-void Logarithmic_Function::display() {
-	printf("$f(x)=%.0f+%.0fln(x)$", a, b);
+void Exponential_Function::display() {
+	printf("$f(x)=%.0fe^{%.0fx}$", A, B);
 }

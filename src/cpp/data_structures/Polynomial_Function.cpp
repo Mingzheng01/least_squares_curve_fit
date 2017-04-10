@@ -73,18 +73,18 @@ std::vector<Point> Polynomial_Function::f_on_domain_as_xy_points(float a, float 
 }
 
 void Polynomial_Function::display() {
-	printf("f(x) = ");
+	printf("$f(x) = ");
 	
 	for (int i = coefficients_size-1; i >= 0; i--) {
 		
 		if (coefficients[i] != 0) {
 			if (i != coefficients_size-1) {
 				if (coefficients[i] > 0) {
-					printf(" + ");
+					printf("+");
 				}
 				
 				if (coefficients[i] < 0) {
-					printf(" - ");
+					printf("-");
 				}
 			}
 		
@@ -99,5 +99,5 @@ void Polynomial_Function::display() {
 			}
 		}
 	}
-	printf("\n\n");
+	printf("$");
 }
