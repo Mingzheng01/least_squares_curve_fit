@@ -4,7 +4,8 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
-#include "../../../include/Point.hpp"
+#include "../../../../include/Point.hpp"
+
 
 bool file_exists(const std::string& file_name) {
 	bool exit_status = false;
@@ -82,28 +83,44 @@ bool write_csv(std::vector<Point>& points, const std::string& file_name) {
 	return exit_status;
 }
 
-bool test_data(const std::string& file_name) {
 
-	int a = 1;
-	int b = 360;
-	int interval = 10;
-	float pi = 3.14159265;
 
-	std::vector<Point> points;
-	points.reserve((b+1));
 
-	// f(x) = x^3 + 2x - 7
-	// f(x) = sin(x) + rand(-50, 50)
-	for (int i = a; i <= b; i+=interval) {
-		points[i].x = i;
-		points[i].y = i*i*i + 2*i - 7;
+void write_curve_to_file(std::string in_file_name, std::string out_file_name, Function& f) {
+	std::vector<Point> in_points;
+	std::vector<Point> out_points;
+	std::vector<float> coefs;
+	int num_points;
 
-		//points[i].x = i;
-		//points[i].y = (sin(i * pi / 180) * 180 / pi) + i + get_rand(-50, 50);
+	read_csv(in_points, in_file_name.c_str());
 
-		//points[i].x = i;
-		//points[i].y = (sin(i * pi / 180) * 180 / pi) + i + get_rand(-50, 50);
+	try {
+
+		std::vector<float> min_max;
+		min_max = min_and_max_x(in_points);
+
+		// Show f(x) on domain [min_x-10, max_x+10] to see where function is coming from and going to
+		out_points = f.f_on_domain_as_xy_points(min_max[0] - in_points.capacity() / 10, min_max[1] + in_points.capacity() / 10);
+
+		write_csv(out_points, out_file_name);
+
+	} catch (const std::invalid_argument& e) {
+		std::cerr << e.what() << std::endl << std::endl;
+		throw std::invalid_argument("fit_curve():\n Least Squares Matrix failed to be computed because of improper matrix multiplication\n");
+
+	} catch (const nan_exception& e) {
+		std::cerr << "fit_curve():\n Output data either has NaN (not a number), " <<
+					 "or order of magnitude for desired curve fit is too high" << std::endl << std::endl;
+		throw e;
+
+	} catch (...) {
+		std::cerr << "fit_curve():\nUnknown error" << std::endl << std::endl;
+		std::exception e;
+		throw e;
 	}
 
-	write_csv(points, file_name);
+	return;
 }
+
+
+

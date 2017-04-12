@@ -5,14 +5,13 @@
 #include <cstdlib>
 #include <exception>
 #include "../../../include/Point.hpp"
-#include "../math/math.cpp"
-#include "../math/linear_algebra.cpp"
-#include "../data_structures/Exponential_Function.cpp"
-#include "../file/file.cpp"
+#include "../util/math/math.cpp"
+#include "../util/math/linear_algebra.cpp"
+#include "../data_structures/functions/Exponential_Function.cpp"
+#include "../data_structures/functions/Function.cpp"
+#include "../util/file/file.cpp"
 
 Exponential_Function get_exponential_function(std::vector<Point>& points) {
-	
-
 
 	float a_num_t1 = sum_x_y_lny(points, 2, 1, 0) * sum_x_y_lny(points, 0, 1, 1);
 	float a_num_t2 = sum_x_y_lny(points, 1, 1, 0) * sum_x_y_lny(points, 1, 1, 1);
@@ -43,47 +42,6 @@ Exponential_Function get_exponential_function(std::vector<Point>& points) {
 
 
 //-------------------------------------------------------------------------------------------------------------------
-
-void fit_exponential_curve_from_to(std::string in_file_name, std::string out_file_name) {
-	std::vector<Point> in_points;
-	std::vector<Point> out_points;
-	std::vector<float> coefs;
-	int num_points;
-
-	read_csv(in_points, in_file_name.c_str());
-
-	try {
-		Exponential_Function f = get_exponential_function(in_points);
-
-		f.display();
-
-		std::vector<float> min_max;
-		min_max = min_and_max_x(in_points);
-
-		// Show f(x) on domain [min_x-10, max_x+10] to see where function is coming from and going to
-		out_points = f.f_on_domain_as_xy_points(min_max[0] - in_points.capacity() / 10, min_max[1] + in_points.capacity() / 10);
-
-		write_csv(out_points, out_file_name);
-
-	} catch (const std::invalid_argument& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-		throw std::invalid_argument("fit_curve():\n Least Squares Matrix failed to be computed because of improper matrix multiplication\n");
-
-	} catch (const nan_exception& e) {
-		std::cerr << "fit_curve():\n Output data either has NaN (not a number), " <<
-					 "or order of magnitude for desired curve fit is too high" << std::endl << std::endl;
-		throw e;
-
-	} catch (...) {
-		std::cerr << "fit_curve():\nUnknown error" << std::endl << std::endl;
-		std::exception e;
-		throw e;
-	}
-
-	return;
-}
-
-//-------------------------------------------------------------------------------------------------------------------
 	
 int main(int argc, char* argv[]) {
 	std::string in_file_name;
@@ -94,7 +52,17 @@ int main(int argc, char* argv[]) {
 		out_file_name = argv[2];
 
 		try {
-		fit_exponential_curve_from_to(in_file_name, out_file_name);
+		
+		// Read input points		
+		std::vector<Point> in_points;
+		read_csv(in_points, in_file_name.c_str());
+
+		// Get function, write output points
+		Exponential_Function f = get_exponential_function(in_points);
+		write_curve_to_file(in_file_name, out_file_name, f);
+
+		// Display function to command line
+		f.display();
 
 		} catch (const std::invalid_argument& e) {
 			std::cerr << e.what() << std::endl;
@@ -112,5 +80,6 @@ int main(int argc, char* argv[]) {
 			return -1;
 		}
 	}
+
 	return 0;
 }

@@ -4,9 +4,9 @@
 class Function {
 	public:
 		
-		virtual void display() = 0;
-		virtual float f(float x) = 0;
-		virtual std::vector<Point> f_on_domain_as_xy_points(float a, float b) = 0;	
+		virtual void display();
+		virtual float f(float x);
+		virtual std::vector<Point> f_on_domain_as_xy_points(float a, float b);	
 	
 	protected:
 	

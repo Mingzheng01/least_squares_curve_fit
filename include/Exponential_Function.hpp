@@ -9,7 +9,6 @@ class Exponential_Function: public Function {
 		~Exponential_Function();
 		
 		float f(float x);
-		std::vector<Point> f_on_domain_as_xy_points(float a, float b);
 		void display();
 	
 	protected:

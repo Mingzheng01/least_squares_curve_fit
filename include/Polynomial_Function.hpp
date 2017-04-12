@@ -9,7 +9,6 @@ class Polynomial_Function: public Function {
 		~Polynomial_Function();
 		
 		float f(float x);
-		std::vector<Point> f_on_domain_as_xy_points(float a, float b);
 		void display();
 	
 	protected:

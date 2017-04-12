@@ -6,10 +6,11 @@
 #include <exception>
 #include "../../../include/Point.hpp"
 #include "../../../include/Polynomial_Function.hpp"
-#include "../math/math.cpp"
-#include "../math/linear_algebra.cpp"
-#include "../data_structures/Polynomial_Function.cpp"
-#include "../file/file.cpp"
+#include "../util/math/math.cpp"
+#include "../util/math/linear_algebra.cpp"
+#include "../data_structures/functions/Polynomial_Function.cpp"
+#include "../data_structures/functions/Function.cpp"
+#include "../util/file/file.cpp"
 
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -108,45 +109,6 @@ Polynomial_Function get_polynomial_function(std::vector<Point>& points, int orde
 }
 
 //-------------------------------------------------------------------------------------------------------------------
-
-void fit_n_order_curve_from_to(int order, std::string in_file_name, std::string out_file_name) {
-	std::vector<Point> in_points;
-	std::vector<Point> out_points;
-	std::vector<float> coefs;
-	int num_points;
-
-	read_csv(in_points, in_file_name.c_str());
-
-	try {
-		Polynomial_Function f = get_polynomial_function(in_points, order);
-
-		f.display();
-
-		std::vector<float> min_max;
-		min_max = min_and_max_x(in_points);
-
-		// Show f(x) on domain [min_x-10, max_x+10] to see where function is coming from and going to
-		out_points = f.f_on_domain_as_xy_points(min_max[0] - in_points.capacity() / 10, min_max[1] + in_points.capacity() / 10);
-
-		write_csv(out_points, out_file_name);
-
-	} catch (const std::invalid_argument& e) {
-		std::cerr << e.what() << std::endl << std::endl;
-		throw std::invalid_argument("fit_curve():\n Least Squares Matrix failed to be computed because of improper matrix multiplication\n");
-
-	} catch (const nan_exception& e) {
-		std::cerr << "fit_curve():\n Output data either has NaN (not a number), " <<
-					 "or order of magnitude for desired curve fit is too high" << std::endl << std::endl;
-		throw e;
-
-	} catch (...) {
-		std::cerr << "fit_curve():\nUnknown error" << std::endl << std::endl;
-		std::exception e;
-		throw e;
-	}
-}
-
-//-------------------------------------------------------------------------------------------------------------------
 	
 int main(int argc, char* argv[]) {
 	int order = 2;
@@ -159,7 +121,17 @@ int main(int argc, char* argv[]) {
 		order = atoi(argv[3]);
 
 		try {
-		fit_n_order_curve_from_to(order, in_file_name, out_file_name);
+		
+		// Read input points		
+		std::vector<Point> in_points;
+		read_csv(in_points, in_file_name.c_str());
+
+		// Get function, write output points
+		Polynomial_Function f = get_polynomial_function(in_points, order);
+		write_curve_to_file(in_file_name, out_file_name, f);
+
+		// Display function to command line
+		f.display();
 
 		} catch (const std::invalid_argument& e) {
 			std::cerr << e.what() << std::endl;

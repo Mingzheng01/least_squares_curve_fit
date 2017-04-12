@@ -1,16 +1,7 @@
 #include <vector>
 #include <math.h>
-#include "../../../include/Point.hpp"
-#include "../exception/nan_exception.cpp"
-
-//-------------------------------------------------------------------------------------------------------------------
-
-/*
-* f(x) = ln(x)
-*/
-float ln(float x) {
-	return 20 * log(x + 3);
-}
+#include "../../../../include/Point.hpp"
+#include "../../data_structures/exception/nan_exception.cpp"
 
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -19,17 +10,17 @@ float ln(float x) {
  n
 ---
 \  
-/     (xi)^j * ln^k(xi)
+/     (yi)^j * ln^k(xi)
 ---
 i=1
 
 */
-float sum_x_lnx(std::vector<Point>& points, int j, int k) {
+float sum_y_lnx(std::vector<Point>& points, int j, int k) {
 	int n = points.capacity();
 	float sum = 0;
 	
 	for (int i = 0; i < n; i++) {
-		sum += pow(points[i].x, j) * pow(ln(points[i].x), k);
+		sum += pow(points[i].y, j) * pow(log(points[i].x), k);
 	}
 	
 	if (isnan(sum)) {
@@ -62,7 +53,14 @@ float sum_x_y_lny(std::vector<Point>& points, int j, int k, int l) {
 	float sum = 0;
 	
 	for (int i = 0; i < n; i++) {
-		sum += pow(points[i].x, j) * pow(points[i].y, k) * pow(ln(points[i].y), l);
+		
+		float x = pow(points[i].x, j);
+		float z = pow(points[i].y, k);
+		float y = pow(log(points[i].y), l);
+
+		//std::cerr << x << " * " << y << " * " << z << std::endl;
+		
+		sum += (float) (x * y * z);
 	}
 	
 	if (isnan(sum)) {
@@ -138,6 +136,31 @@ std::vector<float> min_and_max_x(std::vector<Point>& points) {
 
 //-------------------------------------------------------------------------------------------------------------------
 
+std::vector<float> min_and_max_y(std::vector<Point>& points) {
+	float min = 0;
+	float max = 0;
+	float cur = 0;
+	int length = points.capacity();
+	std::vector<float> min_and_max;
+
+	for (int i = 0; i < length; i++) {
+		if (points[i].y < min) {
+			min = points[i].y;
+		}  
+		
+		if (points[i].y > max) {
+			max = points[i].y;
+		}
+	}
+
+	min_and_max.push_back(min);
+	min_and_max.push_back(max);
+	
+	return min_and_max;
+}
+
+//-------------------------------------------------------------------------------------------------------------------
+
 int get_rand(int min, int max) {
 
      if (min < max == false) {
@@ -146,5 +169,4 @@ int get_rand(int min, int max) {
      }
 
      return rand() % (max - min) + min + 1; 
-
 }
