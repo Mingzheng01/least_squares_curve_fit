@@ -1,7 +1,7 @@
 #ifndef EXPONENTIAL_FUNCTION_H
 #define EXPONENTIAL_FUNCTION_H
 
-#include "Function.h"
+#include "Function.hpp"
 
 class Exponential_Function: public Function {
 	public:

@@ -4,32 +4,13 @@
 #include <vector>
 #include <cstdlib>
 #include <exception>
-#include "../../../include/Point.h"
+#include "../../../include/Point.hpp"
 #include "../math/math.cpp"
 #include "../math/linear_algebra.cpp"
 #include "../data_structures/Exponential_Function.cpp"
 #include "../file/file.cpp"
 
 Exponential_Function get_exponential_function(std::vector<Point>& points) {
-
-	float a_numerator = (sum_x_y_lny(points, 0, 0, 1) * sum_x_y_lny(points, 2, 0, 0)) - (sum_x_y_lny(points, 1, 0, 0) * sum_x_y_lny(points, 1, 0, 1));
-
-	float b_numerator = (points.capacity() * sum_x_y_lny(points, 1, 0, 0) * sum_x_y_lny(points, 0, 0, 1)) - (sum_x_y_lny(points, 1, 0, 0) * sum_x_y_lny(points, 0, 0, 1));
-
-	float denominator = (points.capacity() * sum_x_y_lny(points, 2, 0, 0)) - pow(sum_x_y_lny(points, 1, 0, 0), 2);
-
-	float a = a_numerator / denominator;
-	float b = b_numerator / denominator;
-
-	std::cerr << a << "/" << b << std::endl;
-
-	Exponential_Function f(a, b);
-
-	return f;
-
-}
-
-Exponential_Function get_exponential_function1(std::vector<Point>& points) {
 	
 
 
@@ -52,6 +33,8 @@ Exponential_Function get_exponential_function1(std::vector<Point>& points) {
 
 	float a = a_numerator / denominator;
 	float b = b_numerator / denominator;
+
+	a = exp(a);
 
 	Exponential_Function f(a, b);
 

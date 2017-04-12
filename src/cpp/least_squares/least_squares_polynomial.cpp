@@ -4,8 +4,8 @@
 #include <vector>
 #include <cstdlib>
 #include <exception>
-#include "../../../include/Point.h"
-#include "../../../include/Polynomial_Function.h"
+#include "../../../include/Point.hpp"
+#include "../../../include/Polynomial_Function.hpp"
 #include "../math/math.cpp"
 #include "../math/linear_algebra.cpp"
 #include "../data_structures/Polynomial_Function.cpp"

@@ -1,7 +1,7 @@
 #ifndef Logarithmic_FUNCTION_H
 #define Logarithmic_FUNCTION_H
 
-#include "Function.h"
+#include "Function.hpp"
 
 class Logarithmic_Function: public Function {
 	public:

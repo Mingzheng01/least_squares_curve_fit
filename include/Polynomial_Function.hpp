@@ -1,7 +1,7 @@
 #ifndef POLYNOMIAL_FUNCTION_H
 #define POLYNOMIAL_FUNCTION_H
 
-#include "Function.h"
+#include "Function.hpp"
 
 class Polynomial_Function: public Function {
 	public:

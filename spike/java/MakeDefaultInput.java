@@ -35,10 +35,10 @@ class MakeDefaultInput {
 
 		// Domain for f(x)
 	 	int a = 1;
-		int b = 10;
+		int b = 360;
 
 		// Get all the points
-		Point[] org = input(a, b);
+		Point[] org = sinusoidal(a, b);
 		Point[] poly = polynomial(a, b);
 		Point[] exp = exponential(a, b);
 		Point[] log = logarithmic(a, b);
@@ -61,10 +61,13 @@ class MakeDefaultInput {
 		// Write to all the files
 		for (int x = a; x < b ; x++) {
 			pwOrg.println(org[x].x + "," + org[x].y);
+
+			/*
 			pwPoly.println(poly[x].x + "," + poly[x].y);
 			pwExp.println(exp[x].x + "," + exp[x].y);
 			pwLog.println(log[x].x + "," + log[x].y);
 			pwSin.println(sin[x].x + "," + sin[x].y);
+			*/
 
 		}
 
@@ -124,7 +127,7 @@ public static Point[] input(int a, int b) {
 //-------------------------------------------------------------------
 
 	/**
-	* f(x) = 2^x
+	* f(x) = 3^x
 	*
 	* @param a low bound of domain
 	* @param b upper bound of domain
@@ -133,9 +136,11 @@ public static Point[] input(int a, int b) {
 	public static Point[] exponential(int a, int b) {
 		Point[] points = new Point[b];
 		Point p;
-
+		float y;
+	
 		for (int x = a; x < b; x++) {
-			p = new Point(x, (float) Math.pow(2, x));
+			y = (float) (3 * Math.pow(2, x));
+			p = new Point(x, y);
 			points[x] = p;
 		}
 		
@@ -186,12 +191,19 @@ public static Point[] input(int a, int b) {
 	public static Point[] sinusoidal(int a, int b) {
 		Point[] points = new Point[b];
 		Point p;
+		float y;
 
 		for (int x = a; x < b; x++) {
-			p = new Point(x, (float) Math.sin(x));
+			p = new Point((float)x, (float) (Math.toDegrees(Math.sin(Math.toRadians((2*x)-14))) + 20));
 			points[x] = p;			
 		}
 		
 		return points;
 	}
 }
+
+
+
+
+
+

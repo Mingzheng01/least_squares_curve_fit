@@ -1,8 +1,8 @@
 #include <vector>
 #include <cstdio>
 #include <cmath>
-#include "../../../include/Point.h"
-#include "../../../include/Logarithmic_Function.h"
+#include "../../../include/Point.hpp"
+#include "../../../include/Logarithmic_Function.hpp"
 #include <math.h>
 
 
