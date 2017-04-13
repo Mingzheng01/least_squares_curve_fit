@@ -1,14 +1,7 @@
-#include <vector>
-#include <cstdio>
-#include <cmath>
-#include "../../../../include/Point.hpp"
-#include "../../../../include/Sinusoidal_Function.hpp"
+#include "../../../../include/data_structures/functions/Sinusoidal_Function.hpp"
 #include <math.h>
+#include <cstdio>
 
-float A;
-float W;
-float O;
-float B;
 
 /*
 Constructs Sinusoidal_Function from coeffients A and B

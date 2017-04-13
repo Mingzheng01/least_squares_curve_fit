@@ -1,7 +1,9 @@
 #include <vector>
 #include <math.h>
-#include "../../../../include/Point.hpp"
-#include "../../data_structures/exception/nan_exception.cpp"
+#include <iostream>
+#include <cstdlib>
+#include "../../../../include/util/math/math.hpp"
+#include "../../../../include/data_structures/exception/nan_exception.hpp"
 
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -164,9 +166,11 @@ std::vector<float> min_and_max_y(std::vector<Point>& points) {
 int get_rand(int min, int max) {
 
      if (min < max == false) {
-	min = -10;
+		min = -10;
         max = 10;
      }
 
      return rand() % (max - min) + min + 1; 
 }
+
+

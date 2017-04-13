@@ -1,13 +1,6 @@
-#include <vector>
-#include <cstdio>
-#include <cmath>
-#include "../../../../include/Point.hpp"
-#include "../../../../include/Logarithmic_Function.hpp"
+#include "../../../../include/data_structures/functions/Logarithmic_Function.hpp"
 #include <math.h>
-
-
-float a;
-float b;
+#include <cstdio>
 
 /*
 Constructs Logarithmic_Function from coeffients A and B

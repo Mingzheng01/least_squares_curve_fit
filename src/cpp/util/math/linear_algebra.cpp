@@ -1,5 +1,10 @@
 #include <vector>
 #include <stdexcept>
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include "../../../../include/util/math/math.hpp"
+#include "../../../../include/data_structures/exception/nan_exception.hpp"
 
 /*
 Returns the determinant of a 2x2 matrix A

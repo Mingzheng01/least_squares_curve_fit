@@ -20,12 +20,12 @@ def call_cpp_curve_fit(which_fit, in_file_name, out_file_name, order):
 	print('Identified OS as: ' + platform_str)
 
 	if platform_str == windows:
-		command = '..\\cpp\\least_squares\\' + which_fit + " " + '\"' + in_file_name + '\"' + " " + '\"' + out_file_name + '\"' + " " + str(order)
+		command = '..\\cpp\\curve_fit\\' + "" + which_fit + " " + '\"' + in_file_name + '\"' + " " + '\"' + out_file_name + '\"' + " " + str(order)
 		print(command)
 		os.system(command)
 
 	elif platform_str == linux:
-		command = '../cpp/least_squares/./' + which_fit + " " + in_file_name + " " + out_file_name + " " + str(order)
+		command = '../../bin/./curve_fit' + " " + which_fit + " " + in_file_name + " " + out_file_name + " " + str(order)
 
 		print(command)
 
@@ -35,7 +35,7 @@ def call_cpp_curve_fit(which_fit, in_file_name, out_file_name, order):
 		function_name = function_name.decode('ascii')
 
 	elif platform_str == mac:
-		command = '../cpp/least_squares/./'+ which_fit + " " + '\"' + in_file_name + '\"' + " " + '\"' + out_file_name + '\"' + " " + str(order)
+		command = '../cpp/curve_fit/./'+ which_fit + " " + '\"' + in_file_name + '\"' + " " + '\"' + out_file_name + '\"' + " " + str(order)
 		print(command)
 		os.system(command)	
 

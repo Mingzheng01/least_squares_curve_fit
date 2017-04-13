@@ -1,40 +1,64 @@
+
+// C / C++ language dependencies
 #include <vector>
+#include <iostream>
+#include <cstdlib>
+#include <math.h>
+#include <stdexcept>
+#include "../../../include/data_structures/exception/nan_exception.hpp"
+#include "../../../include/data_structures/functions/Exponential_Function.hpp"
+#include "../../../include/data_structures/functions/Logarithmic_Function.hpp"
+#include "../../../include/data_structures/functions/Polynomial_Function.hpp"
+#include "../../../include/data_structures/functions/Sinusoidal_Function.hpp"
+#include "../../../include/data_structures/functions/Point.hpp"
+#include "../../../include/util/math/linear_algebra.hpp"
+#include "../../../include/util/math/math.hpp"
 
-#include "../data_structures/functions/Exponential_Function.cpp"
-#include "../data_structures/functions/Logarithmic_Function.cpp"
-#include "../data_structures/functions/Polynomial_Function.cpp"
-#include "../data_structures/functions/Sinusoidal_Function.cpp"
-#include "../../../include/Point.hpp"
+
+/*
+
+// To compile and link correctly with g++ / c++ compiler
 
 
-#include "../math/linear_algebra.cpp"
-#include "../math/math.cpp"
+c++ -o ../../../bin/curve_fit curve_fit.cpp ../data_structures/functions/Exponential_Function.cpp ../data_structures/functions/Logarithmic_Function.cpp ../data_structures/functions/Polynomial_Function.cpp ../data_structures/functions/Sinusoidal_Function.cpp ../data_structures/functions/Function.cpp
 
+
+*/
+
+
+/*
+* A ≡ e^a
+* B ≡ b
+*/
 Exponential_Function get_exponential_function(std::vector<Point>& points) {
 
-	float a_num_t1 = sum_x_y_lny(points, 2, 1, 0) * sum_x_y_lny(points, 0, 1, 1);
-	float a_num_t2 = sum_x_y_lny(points, 1, 1, 0) * sum_x_y_lny(points, 1, 1, 1);
-	
-	float a_numerator = a_num_t1 - a_num_t2;
-
-	
-	float b_num_t1 =  sum_x_y_lny(points, 0, 1, 0) *  sum_x_y_lny(points, 1, 1, 1);
-	float b_num_t2 =  sum_x_y_lny(points, 1, 1, 0) *  sum_x_y_lny(points, 0, 1, 1);;
-	
-
-	float b_numerator = b_num_t1 - b_num_t2;
-
-	float den_t1 = sum_x_y_lny(points, 0, 1, 0) *  sum_x_y_lny(points, 2, 1, 0);;
+	// Compute common denominator for both 'a' and 'b'
+	float den_t1 = sum_x_y_lny(points, 0, 1, 0) * sum_x_y_lny(points, 2, 1, 0);;
 	float den_t2 = pow(sum_x_y_lny(points, 1, 1, 0), 2);
-
 	float denominator = den_t1 - den_t2;
 
+	// Compute numberator for coefficient 'a'
+	float a_num_t1 = sum_x_y_lny(points, 2, 1, 0) * sum_x_y_lny(points, 0, 1, 1);
+	float a_num_t2 = sum_x_y_lny(points, 1, 1, 0) * sum_x_y_lny(points, 1, 1, 1);
+	float a_numerator = a_num_t1 - a_num_t2;	
+
+	// Compute numberator for coefficient 'b'
+	float b_num_t1 =  sum_x_y_lny(points, 0, 1, 0) * sum_x_y_lny(points, 1, 1, 1);
+	float b_num_t2 =  sum_x_y_lny(points, 1, 1, 0) * sum_x_y_lny(points, 0, 1, 1);;
+	float b_numerator = b_num_t1 - b_num_t2;
+
+	// Compute 'a' and 'b'
 	float a = a_numerator / denominator;
 	float b = b_numerator / denominator;
 
-	a = exp(a);
+	// Compute A and B
+	float A = exp(a);
+	float B = b;
 
-	Exponential_Function f(a, b);
+	// TODO - throw error if either A or B is NaN
+
+	// f(x) = A*e^(Bx)
+	Exponential_Function f(A, B);
 
 	return f;
 }
@@ -58,6 +82,8 @@ Logarithmic_Function get_logarithmic_function(std::vector<Point>& points) {
 
 	float a = a_numerator / a_denominator;
 
+	// TODO - throw error if either A or B is NaN
+
 	Logarithmic_Function f(a, b);
 
 	return f;
@@ -66,7 +92,7 @@ Logarithmic_Function get_logarithmic_function(std::vector<Point>& points) {
 //-------------------------------------------------------------------------------------------------------------------
 
 /*
-Least Squares Curve Fit to nth order
+Least Squares Curve Fit to nth order polynomial
 
 Theorem: Ax = d  <=>  (A^-1)d = x
 Where A is a nxn invertible matrix, and d and x are nx1 column vectors
@@ -224,7 +250,7 @@ Sinusoidal_Function get_sinusoidal_function(std::vector<Point>& points) {
 	std::cerr << "expected distance: " << expected_distance << std::endl;
 	std::cerr << "true distance: " << actual_distance << std::endl;
 
-	O = abs(actual_distance - expected_distance);
+	float O = abs(actual_distance - expected_distance);
 
 	std::cerr << "O: " << O << std::endl;
 
@@ -232,3 +258,4 @@ Sinusoidal_Function get_sinusoidal_function(std::vector<Point>& points) {
 
 	return f;
 }
+

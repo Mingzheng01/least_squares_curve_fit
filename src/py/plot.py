@@ -26,18 +26,8 @@ def original_data(input_directory):
 
 #-----------------------------------------------------------------------------------------------------
 
-def polynomial_fit(input_directory, order):
-	# Call code that calls C++ to write out to file
-	function_name = replace_me.call_cpp_curve_fit('least_squares_polynomial', input_directory, poly_output_directory, order)
-
-	poly_fit = file_io.read_from_csv(poly_output_directory)
-	poly_fit.append(function_name)
-	return poly_fit
-
-#-----------------------------------------------------------------------------------------------------
-
 def exponential_fit(input_directory):
-	function_name = replace_me.call_cpp_curve_fit('least_squares_exponential', input_directory, exp_output_directory, '')
+	function_name = replace_me.call_cpp_curve_fit(str(1), input_directory, exp_output_directory, -1)
 
 	exp_fit = file_io.read_from_csv(exp_output_directory)
 	exp_fit.append(function_name)
@@ -46,7 +36,7 @@ def exponential_fit(input_directory):
 #-----------------------------------------------------------------------------------------------------
 
 def logarithmic_fit(input_directory):
-	function_name = replace_me.call_cpp_curve_fit('least_squares_logarithmic', input_directory, log_output_directory, '')
+	function_name = replace_me.call_cpp_curve_fit(str(2), input_directory, log_output_directory, -1)
 
 	log_fit = file_io.read_from_csv(log_output_directory)
 	log_fit.append(function_name)
@@ -54,8 +44,18 @@ def logarithmic_fit(input_directory):
 
 #-----------------------------------------------------------------------------------------------------
 
+def polynomial_fit(input_directory, order):
+	# Call code that calls C++ to write out to file
+	function_name = replace_me.call_cpp_curve_fit(str(3), input_directory, poly_output_directory, order)
+
+	poly_fit = file_io.read_from_csv(poly_output_directory)
+	poly_fit.append(function_name)
+	return poly_fit
+
+#-----------------------------------------------------------------------------------------------------
+
 def sinusoidal_fit(input_directory):
-	function_name = replace_me.call_cpp_curve_fit('least_squares_sinusoidal', input_directory, sin_output_directory, '')
+	function_name = replace_me.call_cpp_curve_fit(str(4), input_directory, sin_output_directory, -1)
 
 	sin_fit = file_io.read_from_csv(sin_output_directory)
 	sin_fit.append(function_name)

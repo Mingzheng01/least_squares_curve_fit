@@ -1,9 +1,12 @@
-#include <vector>
-#include <cstdio>
-#include <cmath>
-#include "../../../../include/Point.hpp"
-#include "../../../../include/Polynomial_Function.hpp"
+#include "../../../../include/data_structures/functions/Polynomial_Function.hpp"
+#include "../../../../include/data_structures/exception/nan_exception.hpp"
+
 #include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+
 
 std::vector<float> coefficients;
 int coefficients_size;

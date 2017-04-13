@@ -1,10 +1,13 @@
 #include <vector>
 #include <cstdio>
-#include <cmath>
-#include "../../../../include/Point.hpp"
-#include "../../../../include/Function.hpp"
-#include <math.h>
+#include <iostream>
+#include <stdexcept>
+#include "../../../../include/data_structures/functions/Function.hpp"
+#include "../../../../include/data_structures/exception/nan_exception.hpp"
 
+Function::Function() {
+
+}
 
 float Function::f(float x) {
 	return x;

@@ -1,7 +1,6 @@
-#include <exception>
+#include "../../../../include/data_structures/exception/nan_exception.hpp"
 
-class nan_exception: public std::exception {
-  virtual const char* what() const throw() {
-    return "Not a number";
-  }
-};
+const char* nan_exception:: what() const throw() {
+	return "Not a number";
+}
+

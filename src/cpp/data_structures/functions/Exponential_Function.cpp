@@ -1,13 +1,6 @@
-#include <vector>
-#include <cstdio>
-#include <cmath>
-#include "../../../../include/Point.hpp"
-#include "../../../../include/Exponential_Function.hpp"
+#include "../../../../include/data_structures/functions/Exponential_Function.hpp"
 #include <math.h>
-
-
-float A;
-float B;
+#include <cstdio>
 
 /*
 Constructs Exponential_Function from coeffients A and B
