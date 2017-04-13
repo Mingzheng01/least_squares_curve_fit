@@ -36,4 +36,5 @@
 *.exe
 *.out
 *.app
-src/cpp/main
+spike/java/bin/
+bin

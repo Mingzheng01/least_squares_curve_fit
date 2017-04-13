@@ -1,11 +1,10 @@
-#include "../../../../include/data_structures/functions/Polynomial_Function.hpp"
-#include "../../../../include/data_structures/exception/nan_exception.hpp"
-
 #include <math.h>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include "../../../../include/internal/data_structures/functions/Polynomial_Function.hpp"
+#include "../../../../include/internal/data_structures/exception/nan_exception.hpp"
 
 
 std::vector<float> coefficients;

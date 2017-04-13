@@ -2,6 +2,14 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.util.Random;
  
+/**
+	To compile to bin folder:
+	
+	javac -d bin MakeDefaultInput.java
+	java -cp bin MakeDefaultInput
+
+*/
+
 class Point {
 	public float x;
 	public float y;
@@ -35,10 +43,10 @@ class MakeDefaultInput {
 
 		// Domain for f(x)
 	 	int a = 1;
-		int b = 360;
+		int b = 10;
 
 		// Get all the points
-		Point[] org = sinusoidal(a, b);
+		Point[] org = exponential(a, b);
 		Point[] poly = polynomial(a, b);
 		Point[] exp = exponential(a, b);
 		Point[] log = logarithmic(a, b);

@@ -1,20 +1,25 @@
-
-// C / C++ language dependencies
 #include <vector>
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
-#include "../../../include/data_structures/exception/nan_exception.hpp"
-#include "../../../include/data_structures/functions/Exponential_Function.hpp"
-#include "../../../include/data_structures/functions/Logarithmic_Function.hpp"
-#include "../../../include/data_structures/functions/Polynomial_Function.hpp"
-#include "../../../include/data_structures/functions/Sinusoidal_Function.hpp"
-#include "../../../include/data_structures/functions/Point.hpp"
-#include "../../../include/util/file/file.hpp"
+#include "../../../include/internal/data_structures/exception/nan_exception.hpp"
+#include "../../../include/internal/data_structures/functions/Exponential_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Logarithmic_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Polynomial_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Sinusoidal_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Point.hpp"
+#include "../../../include/internal/curve_fit/least_squares.hpp"
+#include "../../../include/internal/util/file/file.hpp"
 
-//#include "least_squares.cpp"
+/*
 
-#include "../../../include/curve_fit/least_squares.hpp"
+// To compile and link correctly with g++ / c++ compiler
+
+c++ -o ../../../bin/curve_fit curve_fit.cpp ../data_structures/functions/Exponential_Function.cpp ../data_structures/functions/Logarithmic_Function.cpp ../data_structures/functions/Polynomial_Function.cpp ../data_structures/functions/Sinusoidal_Function.cpp ../data_structures/functions/Function.cpp ../data_structures/exception/nan_exception.cpp ../util/math/math.cpp ../util/math/linear_algebra.cpp ../util/file/file.cpp least_squares.cpp
+
+
+*/
+
 
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -39,28 +44,28 @@ int main(int argc, char* argv[]) {
 			read_csv(in_points, in_file_name.c_str());
 
 			switch(op_code) {
-				case 1 : {
+				case 0 : {
 					Exponential_Function e_f = get_exponential_function(in_points);
 					write_curve_to_file(in_file_name, out_file_name, e_f);
 					e_f.display();
 					break;
 				}
 
-				case 2 : {
+				case 1 : {
 					Logarithmic_Function l_f = get_logarithmic_function(in_points);
 					write_curve_to_file(in_file_name, out_file_name, l_f);
 					l_f.display();
 					break;
 				}
 
-				case 3 : {
+				case 2 : {
 					Polynomial_Function p_f = get_polynomial_function(in_points, order);
 					write_curve_to_file(in_file_name, out_file_name, p_f);
 					p_f.display();
 					break;
 				}
 
-				case 4 : {
+				case 3 : {
 					Sinusoidal_Function s_f = get_sinusoidal_function(in_points);
 					write_curve_to_file(in_file_name, out_file_name, s_f);
 					s_f.display();

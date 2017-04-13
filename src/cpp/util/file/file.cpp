@@ -5,10 +5,10 @@
 #include <string>
 #include <cstdlib>
 #include <stdexcept>
-#include "../../../../include/data_structures/functions/Function.hpp"
-#include "../../../../include/data_structures/functions/Point.hpp"
-#include "../../../../include/data_structures/exception/nan_exception.hpp"
-#include "../../../../include/util/math/math.hpp"
+#include "../../../../include/internal/data_structures/functions/Function.hpp"
+#include "../../../../include/internal/data_structures/functions/Point.hpp"
+#include "../../../../include/internal/data_structures/exception/nan_exception.hpp"
+#include "../../../../include/internal/util/math/math.hpp"
 
 bool file_exists(const std::string& file_name) {
 	bool exit_status = false;

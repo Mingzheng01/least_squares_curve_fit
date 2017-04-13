@@ -9,10 +9,10 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import IntVar
 from tkinter import StringVar
-import plot
 import configparser
 from tkinter import messagebox
-import file_io
+from util.plot import plot
+from util.file import file_io
 
 # Main Window Class
 #=====================================================================================================
@@ -202,7 +202,7 @@ class Buttons(tk.Frame):
 			messagebox.showinfo("Invalid Argument", "The input file is not a valid CSV file")
 			return
 	
-		org_data = plot.original_data(input_file_directory)
+		org_data = plot.original_data(input_file_directory, "original data")
 
 		# Plot original data
 		if len(org_data) > 0:

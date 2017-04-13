@@ -1,29 +1,16 @@
-
-// C / C++ language dependencies
 #include <vector>
 #include <iostream>
 #include <cstdlib>
 #include <math.h>
 #include <stdexcept>
-#include "../../../include/data_structures/exception/nan_exception.hpp"
-#include "../../../include/data_structures/functions/Exponential_Function.hpp"
-#include "../../../include/data_structures/functions/Logarithmic_Function.hpp"
-#include "../../../include/data_structures/functions/Polynomial_Function.hpp"
-#include "../../../include/data_structures/functions/Sinusoidal_Function.hpp"
-#include "../../../include/data_structures/functions/Point.hpp"
-#include "../../../include/util/math/linear_algebra.hpp"
-#include "../../../include/util/math/math.hpp"
-
-
-/*
-
-// To compile and link correctly with g++ / c++ compiler
-
-
-c++ -o ../../../bin/curve_fit curve_fit.cpp ../data_structures/functions/Exponential_Function.cpp ../data_structures/functions/Logarithmic_Function.cpp ../data_structures/functions/Polynomial_Function.cpp ../data_structures/functions/Sinusoidal_Function.cpp ../data_structures/functions/Function.cpp
-
-
-*/
+#include "../../../include/internal/data_structures/exception/nan_exception.hpp"
+#include "../../../include/internal/data_structures/functions/Exponential_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Logarithmic_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Polynomial_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Sinusoidal_Function.hpp"
+#include "../../../include/internal/data_structures/functions/Point.hpp"
+#include "../../../include/internal/util/math/linear_algebra.hpp"
+#include "../../../include/internal/util/math/math.hpp"
 
 
 /*

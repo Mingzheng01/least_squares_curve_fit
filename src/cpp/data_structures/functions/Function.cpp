@@ -2,8 +2,8 @@
 #include <cstdio>
 #include <iostream>
 #include <stdexcept>
-#include "../../../../include/data_structures/functions/Function.hpp"
-#include "../../../../include/data_structures/exception/nan_exception.hpp"
+#include "../../../../include/internal/data_structures/functions/Function.hpp"
+#include "../../../../include/internal/data_structures/exception/nan_exception.hpp"
 
 Function::Function() {
 

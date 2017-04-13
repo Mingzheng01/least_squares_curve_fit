@@ -1,4 +1,4 @@
-#include "../../../../include/data_structures/functions/Logarithmic_Function.hpp"
+#include "../../../../include/internal/data_structures/functions/Logarithmic_Function.hpp"
 #include <math.h>
 #include <cstdio>
 

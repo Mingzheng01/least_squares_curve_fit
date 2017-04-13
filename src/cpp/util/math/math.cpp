@@ -2,8 +2,8 @@
 #include <math.h>
 #include <iostream>
 #include <cstdlib>
-#include "../../../../include/util/math/math.hpp"
-#include "../../../../include/data_structures/exception/nan_exception.hpp"
+#include "../../../../include/internal/util/math/math.hpp"
+#include "../../../../include/internal/data_structures/exception/nan_exception.hpp"
 
 //-------------------------------------------------------------------------------------------------------------------
 

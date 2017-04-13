@@ -1,4 +1,4 @@
-#include "../../../../include/data_structures/functions/Exponential_Function.hpp"
+#include "../../../../include/internal/data_structures/functions/Exponential_Function.hpp"
 #include <math.h>
 #include <cstdio>
 
@@ -23,5 +23,13 @@ float Exponential_Function::f(float x) {
 }
 
 void Exponential_Function::display() {
-	printf("$f(x)=%.0fe^{%.0fx}$", A, B);
+
+	if (A == 1 && B != 1) {
+		printf("$f(x)=e^{%.0fx}$", B);
+
+	} else if (A != 1 && B == 1) {
+		printf("$f(x)=%.0fe^{x}$", B);
+	} else {
+		printf("$f(x)=%.0fe^{%.0fx}$", A, B);
+	}
 }
