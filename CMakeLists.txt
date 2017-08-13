@@ -5,6 +5,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 project(least_squares_curve_fit)
 
+file(MAKE_DIRECTORY ${bin})
+
 add_executable(
 	bin/curve_fit
 	src/cpp/curve_fit/curve_fit.cpp
