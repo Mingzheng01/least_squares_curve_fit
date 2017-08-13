@@ -2,10 +2,12 @@ cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CURRENT_BINARY_DIR "bin")
 
 project(least_squares_curve_fit)
 
-file(MAKE_DIRECTORY ${bin})
+# Causes infinite loop, must manually create bin directory
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(
 	bin/curve_fit
