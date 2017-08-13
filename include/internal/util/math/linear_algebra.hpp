@@ -1,5 +1,5 @@
 #ifndef LINEAR_ALGEBRA_H
-#define LINEARL_ALEGRA_H
+#define LINEAR_ALGEBRA_H
 
 float determinant_2x2(std::vector< std::vector<float> > A);
 float determinant(std::vector< std::vector<float> >& A);

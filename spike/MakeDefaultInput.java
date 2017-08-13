@@ -53,11 +53,11 @@ class MakeDefaultInput {
 		}
 
 		// Domain for f(x)
-	 	int a = 1; 
+	 	int a = 1;
 		int b = 360;
 
 		// Get all the points
-		Point[] org = logarithmic(a, b);
+		Point[] org = polynomial(a, b);
 
 		if (org == null) {
 			System.out.println("No points to plot");

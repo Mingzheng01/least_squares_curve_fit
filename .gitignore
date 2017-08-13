@@ -3,6 +3,10 @@
 
 # Test data
 # *.csv
+data/output_exp.csv
+data/output_log.csv
+data/output_poly.csv
+data/output_sin.csv
 
 # Python Bytecode
 *.pyc
@@ -44,3 +48,6 @@ bin
 CMakeCache.txt
 CMakeFiles
 Makefile
+
+# Java
+*.class
