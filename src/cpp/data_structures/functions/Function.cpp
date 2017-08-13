@@ -5,27 +5,27 @@
 #include "../../../../include/internal/data_structures/functions/Function.hpp"
 #include "../../../../include/internal/data_structures/exception/nan_exception.hpp"
 
+// TODO - Implement to_string();
+
 Function::Function() {
 
+	// Place holder function
 }
 
 float Function::f(float x) {
 	return x;
 }
 
-std::vector<Point> Function::f_on_domain_as_xy_points(float a, float b) {
+std::vector<Point> Function::f_on_domain_as_xy_points(std::vector<Point>& points) {
 	std::vector<Point> f_of_x;
+	int n = points.capacity();	
 	
-	if (a > b) {
-		throw std::invalid_argument("f_on_domain_as_xy_points(): Invalid domain, a must be less than or equal to b");
-	}
-	
-	for (int x = a; x <= b; x++) {
+	for (int i = 0; i < n; i++) {
 		Point p;
-		p.x = x;
+		p.x = points[i].x;
 		
 		try {
-			p.y = f(x);
+			p.y = f(p.x);
 		} catch (const nan_exception& e) {
 			std::cerr << "f_on_domain_as_xy_points():\n f(" << p.x << ") evaluated to NaN" << std::endl << std::endl;
 		}
@@ -37,5 +37,5 @@ std::vector<Point> Function::f_on_domain_as_xy_points(float a, float b) {
 }
 
 void Function::display() {
-	std::cout << "$f(x)=x$";
+	std::cout << "$undefined$";
 }

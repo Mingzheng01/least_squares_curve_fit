@@ -133,6 +133,28 @@ std::vector<float> mult_matrix_by_vector(std::vector< std::vector<float> >& A, s
 }
 
 /*
+Returns the transpose of a matrix
+*/
+std::vector< std::vector<float> > matrix_transpose(std::vector< std::vector<float> >& A) {
+	int r = A.capacity();
+	int c = A[0].capacity();
+	
+	// Create 2D vector same size of matrix A
+	std::vector < std::vector<float> > B;
+	B.resize(r);
+
+	for (int i = 0; i < r; i++) {
+		B[i].resize(c);
+
+		// Swap all values indices
+		for (int j = 0; j < c; j++) {
+			B[i][j] = A[j][i];
+		}
+	}
+	return B;
+}
+
+/*
 Returns the inverse of a matrix in the format of a 2D vector<float>
 */
 std::vector< std::vector<float> > inverse(std::vector< std::vector<float> >& mat) {

@@ -10,7 +10,7 @@ class Function {
 		Function();
 		virtual void display();
 		virtual float f(float x);
-		virtual std::vector<Point> f_on_domain_as_xy_points(float a, float b);	
+		virtual std::vector<Point> f_on_domain_as_xy_points(std::vector<Point>& points);	
 	
 	protected:
 	

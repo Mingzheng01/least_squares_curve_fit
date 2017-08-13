@@ -10,6 +10,7 @@ class Exponential_Function: public Function {
 		
 		float f(float x);
 		void display();
+		static Exponential_Function least_squares(std::vector<Point>& points);
 	
 	protected:
 	

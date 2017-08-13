@@ -2,7 +2,7 @@
 *~
 
 # Test data
-*.csv
+# *.csv
 
 # Python Bytecode
 *.pyc
@@ -38,3 +38,9 @@
 *.app
 spike/java/bin/
 bin
+
+# Cmake
+*.cmake
+CMakeCache.txt
+CMakeFiles
+Makefile

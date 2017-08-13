@@ -1,12 +1,12 @@
 import java.io.PrintWriter;
 import java.io.File;
 import java.util.Random;
- 
+
 /**
 	To compile to bin folder:
-	
-	javac -d bin MakeDefaultInput.java
-	java -cp bin MakeDefaultInput
+
+	javac -d ../bin MakeDefaultInput.java
+	java -cp ../bin MakeDefaultInput
 
 */
 
@@ -20,16 +20,9 @@ class Point {
 	}
 }
 
+//==================================================================
+
 class MakeDefaultInput {
-	public static Random random = new Random();
-
-	// File directories
-	public static String inputOrg = "../../data/input.csv";
-	public static String outputPoly = "../../data/output_poly.csv";
-	public static String outputExp = "../../data/output_exp.csv";
-	public static String outputLog = "../../data/output_log.csv";
-	public static String outputSin = "../../data/output_sin.csv";
-
 	/**
 	* Make default test data graphing the following functions with matplotlib:
 	*
@@ -39,52 +32,46 @@ class MakeDefaultInput {
 	*  f(x) = sin(x)
 	*
 	*/
-	public static void main(String[] args) throws Exception {
+
+	public static Random random = new Random();
+
+	public static void main(String[] args) {
+		PrintWriter pwOrg = null;
+
+		// File directory
+	 	String inputOrg = "../data/input.csv";
+
+		// Open all the input
+		File inputOrgFile = new File(inputOrg);
+
+		// Instantiate the print writer
+		try {
+			pwOrg = new PrintWriter(inputOrgFile);
+		} catch (Exception e) {
+
+			System.out.println("file not found, print writer failed to initialize");
+		}
 
 		// Domain for f(x)
-	 	int a = 1;
-		int b = 10;
+	 	int a = 1; 
+		int b = 360;
 
 		// Get all the points
-		Point[] org = exponential(a, b);
-		Point[] poly = polynomial(a, b);
-		Point[] exp = exponential(a, b);
-		Point[] log = logarithmic(a, b);
-		Point[] sin = sinusoidal(a, b);
+		Point[] org = logarithmic(a, b);
 
-		// Open all the files
-		File inputOrgFile = new File(inputOrg);
-		File outputPolyFile = new File(outputPoly);
-		File outputExpFile = new File(outputExp);
-		File outputLogFile = new File(outputLog);
-		File outputSinFile = new File(outputSin);
-
-		// Open all the print writers
-		PrintWriter pwOrg = new PrintWriter(inputOrgFile);
-		PrintWriter pwPoly = new PrintWriter(outputPolyFile);
-		PrintWriter pwExp = new PrintWriter(outputExpFile);
-		PrintWriter pwLog = new PrintWriter(outputLogFile);
-		PrintWriter pwSin = new PrintWriter(outputSinFile);
+		if (org == null) {
+			System.out.println("No points to plot");
+			System.exit(1);
+		}
 
 		// Write to all the files
 		for (int x = a; x < b ; x++) {
 			pwOrg.println(org[x].x + "," + org[x].y);
-
-			/*
-			pwPoly.println(poly[x].x + "," + poly[x].y);
-			pwExp.println(exp[x].x + "," + exp[x].y);
-			pwLog.println(log[x].x + "," + log[x].y);
-			pwSin.println(sin[x].x + "," + sin[x].y);
-			*/
-
 		}
 
 		// Close all the files
 		pwOrg.close();
-		pwPoly.close();
-		pwExp.close();
-		pwLog.close();
-		pwSin.close();
+    System.exit(0);
 	}
 
 //-------------------------------------------------------------------
@@ -107,7 +94,7 @@ public static Point[] input(int a, int b) {
 		points[x] = p;
 	}
 
-	return points;	
+	return points;
 }
 
 
@@ -129,7 +116,7 @@ public static Point[] input(int a, int b) {
 			points[x] = p;
 		}
 
-		return points;	
+		return points;
 	}
 
 //-------------------------------------------------------------------
@@ -145,13 +132,13 @@ public static Point[] input(int a, int b) {
 		Point[] points = new Point[b];
 		Point p;
 		float y;
-	
+
 		for (int x = a; x < b; x++) {
 			y = (float) (3 * Math.pow(2, x));
 			p = new Point(x, y);
 			points[x] = p;
 		}
-		
+
 		return points;
 	}
 
@@ -168,7 +155,7 @@ public static Point[] input(int a, int b) {
 		Point[] points = new Point[b];
 		Point p;
 		float y;
-		
+
 		for (int x = a; x < b; x++) {
 
 			y = (float) Math.log(x);
@@ -197,21 +184,23 @@ public static Point[] input(int a, int b) {
 	* @return points = {<x,f(x)> | ∀x (a ≤ x ≤ b)}
 	*/
 	public static Point[] sinusoidal(int a, int b) {
+
 		Point[] points = new Point[b];
 		Point p;
 		float y;
+		float t;
 
 		for (int x = a; x < b; x++) {
-			p = new Point((float)x, (float) (Math.toDegrees(Math.sin(Math.toRadians((2*x)-14))) + 20));
-			points[x] = p;			
+			t = (float) Math.toRadians(x);
+
+			float m = (float) 23.58;
+
+			y = (float) (3 * Math.sin(2 * t) + Math.toRadians(m));
+
+			p = new Point((float)t, (float)y);
+			points[x] = p;
 		}
-		
+
 		return points;
 	}
 }
-
-
-
-
-
-

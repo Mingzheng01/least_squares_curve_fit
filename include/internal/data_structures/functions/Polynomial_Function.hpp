@@ -10,6 +10,7 @@ class Polynomial_Function: public Function {
 		
 		float f(float x);
 		void display();
+		static Polynomial_Function least_squares(std::vector<Point>& points, int order);
 	
 	protected:
 	
@@ -18,4 +19,4 @@ class Polynomial_Function: public Function {
 		int coefficients_size;
 };
 
-#endif
+#endif	

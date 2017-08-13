@@ -8,20 +8,8 @@
 #include "../../../include/internal/data_structures/functions/Polynomial_Function.hpp"
 #include "../../../include/internal/data_structures/functions/Sinusoidal_Function.hpp"
 #include "../../../include/internal/data_structures/functions/Point.hpp"
-#include "../../../include/internal/curve_fit/least_squares.hpp"
 #include "../../../include/internal/util/file/file.hpp"
 
-/*
-
-// To compile and link correctly with g++ / c++ compiler
-
-c++ -o ../../../bin/curve_fit curve_fit.cpp ../data_structures/functions/Exponential_Function.cpp ../data_structures/functions/Logarithmic_Function.cpp ../data_structures/functions/Polynomial_Function.cpp ../data_structures/functions/Sinusoidal_Function.cpp ../data_structures/functions/Function.cpp ../data_structures/exception/nan_exception.cpp ../util/math/math.cpp ../util/math/linear_algebra.cpp ../util/file/file.cpp least_squares.cpp
-
-
-*/
-
-
-//-------------------------------------------------------------------------------------------------------------------
 
 int main(int argc, char* argv[]) {
 	int order;
@@ -38,35 +26,35 @@ int main(int argc, char* argv[]) {
 		order = atoi(argv[4]);
 
 		try {
-		
-			// Read input points		
+
+			// Read input points
 			std::vector<Point> in_points;
 			read_csv(in_points, in_file_name.c_str());
 
 			switch(op_code) {
 				case 0 : {
-					Exponential_Function e_f = get_exponential_function(in_points);
+					Exponential_Function e_f = Exponential_Function::least_squares(in_points);
 					write_curve_to_file(in_file_name, out_file_name, e_f);
 					e_f.display();
 					break;
 				}
 
 				case 1 : {
-					Logarithmic_Function l_f = get_logarithmic_function(in_points);
+					Logarithmic_Function l_f = Logarithmic_Function::least_squares(in_points);
 					write_curve_to_file(in_file_name, out_file_name, l_f);
 					l_f.display();
 					break;
 				}
 
 				case 2 : {
-					Polynomial_Function p_f = get_polynomial_function(in_points, order);
+					Polynomial_Function p_f = Polynomial_Function::least_squares(in_points, order);
 					write_curve_to_file(in_file_name, out_file_name, p_f);
 					p_f.display();
 					break;
 				}
 
 				case 3 : {
-					Sinusoidal_Function s_f = get_sinusoidal_function(in_points);
+					Sinusoidal_Function s_f = Sinusoidal_Function::least_squares(in_points);
 					write_curve_to_file(in_file_name, out_file_name, s_f);
 					s_f.display();
 					break;
@@ -98,11 +86,3 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-
-
-
-
-
-
-
-

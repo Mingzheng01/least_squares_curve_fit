@@ -103,7 +103,9 @@ void write_curve_to_file(std::string in_file_name, std::string out_file_name, Fu
 		min_max = min_and_max_x(in_points);
 
 		// Show f(x) on domain [min_x-10, max_x+10] to see where function is coming from and going to
-		out_points = f.f_on_domain_as_xy_points(min_max[0] - in_points.capacity() / 10, min_max[1] + in_points.capacity() / 10);
+		//out_points = f.f_on_domain_as_xy_points(min_max[0] - in_points.capacity() / 10, min_max[1] + in_points.capacity() / 10);
+	
+		out_points = f.f_on_domain_as_xy_points(in_points);
 
 		write_csv(out_points, out_file_name);
 

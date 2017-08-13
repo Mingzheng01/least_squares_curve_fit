@@ -20,13 +20,13 @@ class LeastSquaresWindow(tk.Tk):
     def __init__(self, *args,**kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-		# Get configParsers for reading in strings from .ini 
+		# Get configParsers for reading in strings from .ini
         properties_config = configparser.ConfigParser()
         properties_config.read("../../ini/properties.ini")
 
 		# Read in title
         least_squares = properties_config.get('titles', 'least_squares_window_title')
-	
+
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
@@ -57,7 +57,7 @@ class GraphPage(tk.Frame):
 		font_name = properties_config.get('text', 'font_name')
 		font_size = properties_config.getint('text', 'font_size')
 		LARGE_FONT=(font_name, font_size)
-		
+
 		# titles
 		plot_title = properties_config.get('titles', 'plot_title')
 
@@ -109,7 +109,7 @@ class Options(tk.Frame):
 		exponential_checkbox_label_str = properties_config.get('labels', 'exponential_checkbox_label_str')
 		sinusoidal_checkbox_label_str = properties_config.get('labels', 'sinusoidal_checkbox_label_str')
 		item_padding = properties_config.get('padding', 'item_padding')
-		default_input_directory = properties_config.get('directories', 'input_directory')	
+		default_input_directory = properties_config.get('directories', 'input_directory')
 		self.input_file_directory = default_input_directory
 
 		# Create labels
@@ -117,7 +117,7 @@ class Options(tk.Frame):
 		order_of_magnitude_label = ttk.Label(self, text=order_of_magnitude_label_str)
 
 		self.input_directory = StringVar()
-		
+
 		# Create text entry fields
 		self.input_entry = ttk.Entry(self, textvariable=self.input_directory)
 		self.order_of_magnitude_entry = ttk.Entry(self)
@@ -198,10 +198,10 @@ class Buttons(tk.Frame):
 
 		input_file_directory = options_frame.input_entry.get()
 
-		if file_io.is_valid_input_file(input_file_directory) == False:	
+		if file_io.is_valid_input_file(input_file_directory) == False:
 			messagebox.showinfo("Invalid Argument", "The input file is not a valid CSV file")
 			return
-	
+
 		org_data = plot.original_data(input_file_directory, "original data")
 
 		# Plot original data
@@ -213,7 +213,7 @@ class Buttons(tk.Frame):
 
 		# Make sure the user typed something
 		if order != '':
-			
+
 			try:
 				# Convert string to integer (will error out if letters are entered)
 				order = int(order)
@@ -240,24 +240,24 @@ class Buttons(tk.Frame):
 
 		# Get data exponential, logarthmic, and sinusoidal data from csv files
 		# If the check boxes are checked, and data came back, plot the respective curve
-		if options_frame.plot_exponential.get() == 1:			
+		if options_frame.plot_exponential.get() == 1:
 			exp_fit = plot.exponential_fit(input_file_directory)
 
-			if len(exp_fit) > 0:	
+			if len(exp_fit) > 0:
 				ax.plot(exp_fit[x], exp_fit[y], 'g',label=exp_fit[n])
 
 		if options_frame.plot_logarithmic.get() == 1:
 			log_fit = plot.logarithmic_fit(input_file_directory)
 
-			if len(log_fit) > 0:		
+			if len(log_fit) > 0:
 				ax.plot(log_fit[x], log_fit[y], 'm', label=log_fit[n])
 
-		if options_frame.plot_sinusoidal.get() == 1:		
+		if options_frame.plot_sinusoidal.get() == 1:
 			sin_fit = plot.sinusoidal_fit(input_file_directory)
 
 			if len(sin_fit) > 0:
 				ax.plot(sin_fit[x], sin_fit[y], 'k',label=sin_fit[n])
-	
+
 
 		# Prepare legend
 		legend = ax.legend(loc='upper left', shadow=True)
