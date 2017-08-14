@@ -38,15 +38,9 @@ install_cmake() {
 
 #-------------------------------------------------------------------------------
 
-install_cmake_mac() {
+install_cmake() {
   brew install cmake
   brew link --overwrite cmake
-}
-
-#-------------------------------------------------------------------------------
-
-install_cmake_linux() {
-  sudo apt-get install cmake
 }
 
 #-------------------------------------------------------------------------------
@@ -67,7 +61,7 @@ launch_app() {
 
 create_bin_folder
 
-install_cmake_mac
+install_cmake
 
 build_cpp
 
