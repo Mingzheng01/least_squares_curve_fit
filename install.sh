@@ -68,10 +68,7 @@ install_brew() {
 # Install a specified package
 brew_install() {
   brew install $1
-
-  if [ $1 = cmake]; then
-    brew link --overwrite cmake
-  fi
+  brew link --overwrite $1
 }
 
 #-------------------------------------------------------------------------------
