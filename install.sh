@@ -97,7 +97,7 @@ install_system_depencies() {
 
 # Build the C++ code
 build_cpp() {
-  create_folder
+  create_folder bin
   cmake .
   make
 }
