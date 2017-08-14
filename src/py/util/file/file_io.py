@@ -3,7 +3,7 @@ import configparser
 import csv
 
 directories_config = configparser.ConfigParser()
-directories_config.read("../../ini/properties.ini")
+directories_config.read("../../properties.ini")
 
 #-----------------------------------------------------------------------------------------------------
 

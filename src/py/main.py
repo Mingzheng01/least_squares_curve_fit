@@ -22,7 +22,7 @@ class LeastSquaresWindow(tk.Tk):
 
 		# Get configParsers for reading in strings from .ini
         properties_config = configparser.ConfigParser()
-        properties_config.read("../../ini/properties.ini")
+        properties_config.read("../../properties.ini")
 
 		# Read in title
         least_squares = properties_config.get('titles', 'least_squares_window_title')

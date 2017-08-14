@@ -5,7 +5,7 @@ import util.command_line.replace_me as replace_me
 #-----------------------------------------------------------------------------------------------------
 
 properties_config = configparser.ConfigParser()
-properties_config.read("../../ini/properties.ini")
+properties_config.read("../../properties.ini")
 
 # All directories necessary for program to run
 in_file_directory = properties_config.get('directories', 'input_directory')
