@@ -18,7 +18,7 @@ def is_valid_input_file(directory):
 
 #-----------------------------------------------------------------------------------------------------
 
-def read_from_csv(directory):	
+def read_from_csv(directory):
 	# Read in from output.csv file
 	output_data = open(directory)
 	csv_f1 = csv.reader(output_data)
@@ -39,7 +39,7 @@ def read_from_csv(directory):
 #-----------------------------------------------------------------------------------------------------
 
 '''
-If the proper files do not exist already, make them
+If output files do not exist already, make them
 '''
 def setup_io_file():
 	all_files_found = False
@@ -62,20 +62,25 @@ def setup_io_file():
 
 	# TODO - Change print statements to log statements
 
+	# Make sure all of the output files exist
 	for i in range(len(directories)):
 		in_file = Path(directories[i])
 
+		# If it is a file
 		if in_file.is_file():
 			num_files_found = num_files_found + 1
 			print("Exists: " + directories[i])
 
+		# Otherwise, make it
 		else:
 			in_file = open(directories[i], 'w')
 			in_file.close();
 			num_files_found = num_files_found + 1
 			print("Created: " + directories[i])
 
+	# Verify all files have been found
 	if num_files_found == len(directories):
 		all_files_found = True
 
+	# Return status (boolean)
 	return all_files_found

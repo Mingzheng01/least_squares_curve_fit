@@ -2,8 +2,8 @@
 This repository features a C++ and Python implementation of the least squares curve fitting technique.
 
 ## Installation
-Assuming that you have the [GCC Compiler](https://gcc.gnu.org/install/binaries.html) `g++` and [Python 3 Interpreter](https://www.python.org/downloads/) `python3` installed, take the
-following steps to install the application.
+Assuming that you have the [GCC Compiler](https://gcc.gnu.org/install/binaries.html) `g++` installed, take the
+following steps to install the application:
 
 `git clone https://github.com/N02870941/least_squares_curve_fit.git`
 

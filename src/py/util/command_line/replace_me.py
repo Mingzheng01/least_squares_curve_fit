@@ -3,7 +3,7 @@ import os
 import subprocess
 import configparser
 
-# Get configParsers for reading in strings from .ini 
+# Get configParsers for reading in strings from .ini
 properties_config = configparser.ConfigParser()
 properties_config.read("../../ini/properties.ini")
 
@@ -13,7 +13,7 @@ mac_os_name_str = properties_config.get('os_names', 'mac_os_name_str')
 windows_os_name_str = properties_config.get('os_names','windows_os_name_str')
 
 # Get directory for executables
-curve_fit_executable_directory_linux = properties_config.get('directories', 'curve_fit_executable_directory_linux') 
+curve_fit_executable_directory_linux = properties_config.get('directories', 'curve_fit_executable_directory_linux')
 curve_fit_executable_directory_windows = properties_config.get('directories', 'curve_fit_executable_directory_windows')
 
 # For decoding byte array output from command line
@@ -21,7 +21,11 @@ ascii = "ascii"
 
 #-----------------------------------------------------------------------------------------------------
 
-def call_cpp_curve_fit(op_code, in_file_name, out_file_name, order):
+def call_cpp_curve_fit(op_code,
+					   in_file_name,
+					   out_file_name,
+					   order):
+					   
 	platform_str = platform.system()
 
 	function_name = ''
