@@ -14,12 +14,43 @@ create_bin_folder() {
 
 #-------------------------------------------------------------------------------
 
+# Prompt to install a given package
+prompt_install() {
+
+  while true; do
+    read -p "$2 (yes or no) " yn
+    case $yn in
+        [Yy]* ) brew_install $1; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
+#-------------------------------------------------------------------------------
+
+# Verifies is a given package is installed
+verify_installed() {
+  OUTPUT=$(which $1)
+
+    if [ "$OUTPUT" = "" ]; then
+      prompt_install $1 "$1 is installed, would you like to install it?"
+
+    else
+      echo "$1 is installed"
+    fi
+}
+
+#-------------------------------------------------------------------------------
+
+# Install homebrew
 install_brew() {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
 #-------------------------------------------------------------------------------
 
+# Manually install cmake
 install_cmake() {
   CMAKE_DOWNLOAD_LINK="https://cmake.org/files/v3.9/cmake-3.9.1.tar.gz"
 
@@ -38,6 +69,7 @@ install_cmake() {
 
 #-------------------------------------------------------------------------------
 
+# Install cmake via brew
 install_cmake() {
   brew install cmake
   brew link --overwrite cmake
@@ -45,6 +77,25 @@ install_cmake() {
 
 #-------------------------------------------------------------------------------
 
+# Install a specified package
+brew_install() {
+  brew install $1
+}
+
+#-------------------------------------------------------------------------------
+
+# Installs python packages
+install_python_dependencies() {
+  declare -a dependencies=('matplotlib' 'tkinter');
+
+  for i in "${dependencies[@]}"; do
+    pip3 install $i
+  done
+}
+
+#-------------------------------------------------------------------------------
+
+# Build the C++ code
 build_cpp() {
   cmake .
   make
@@ -52,6 +103,7 @@ build_cpp() {
 
 #-------------------------------------------------------------------------------
 
+# Launch Python app
 launch_app() {
   cd src/py
   python3 main.py
@@ -66,3 +118,7 @@ install_cmake
 build_cpp
 
 launch_app
+
+verify_installed python3
+
+install_python_dependencies
