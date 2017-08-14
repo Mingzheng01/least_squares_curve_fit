@@ -1,24 +1,25 @@
-create_bin_folder() {
-  BIN="bin"
+
+# Creates a folder with a specified name if it does not exist already
+create_folder() {
 
   # if the bin folder does not exist
-  if [ ! -d $BIN ]; then
-    echo "Creating $BIN directory"
-    mkdir $BIN
-    echo "$BIN directory successfull created"
+  if [ ! -d $1 ]; then
+    echo "Creating $1 directory"
+    mkdir $1
+    echo "$1 directory successfull created"
 
   else
-    echo "$BIN directory already exists"
+    echo "$1 directory already exists"
   fi
 }
 
 #-------------------------------------------------------------------------------
 
-# Prompt to install a given package
-prompt_install() {
+# Prompt to install a given package via brew
+prompt_brew_install() {
 
   while true; do
-    read -p "$2 (yes or no) " yn
+    read -p "$1 is  not installed, would you like to install it? (yes or no) " yn
     case $yn in
         [Yy]* ) brew_install $1; break;;
         [Nn]* ) exit;;
@@ -31,48 +32,35 @@ prompt_install() {
 
 # Verifies is a given package is installed
 verify_installed() {
+  echo "Checking that $1 is installed..."
+
   OUTPUT=$(which $1)
 
-    if [ "$OUTPUT" = "" ]; then
-      prompt_install $1 "$1 is installed, would you like to install it?"
+  if [ "$OUTPUT" = "" ]; then
+    prompt_brew_install $1
 
-    else
-      echo "$1 is installed"
-    fi
+  else
+    echo "$1 is installed"
+  fi
 }
 
 #-------------------------------------------------------------------------------
 
 # Install homebrew
 install_brew() {
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-}
+  BREW="brew"
 
-#-------------------------------------------------------------------------------
+  echo "Checking that $BREW installed"
 
-# Manually install cmake
-install_cmake() {
-  CMAKE_DOWNLOAD_LINK="https://cmake.org/files/v3.9/cmake-3.9.1.tar.gz"
+  OUTPUT=$(which $BREW)
 
-  curl -O $CMAKE_DOWNLOAD_LINK
-
-  tar -xvzf cmake-3.9.1.tar.gz
-
-  cd cmake-3.9.1
-
-  ./bootstrap
-
-  make
-
-  make install
-}
-
-#-------------------------------------------------------------------------------
-
-# Install cmake via brew
-install_cmake() {
-  brew install cmake
-  brew link --overwrite cmake
+  if [ "$OUTPUT" = "" ]; then
+    echo "$BREW is not installed..."
+    echo "Installing $BREW..."
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  else
+    echo "$BREW is already installed..."
+  fi
 }
 
 #-------------------------------------------------------------------------------
@@ -80,6 +68,10 @@ install_cmake() {
 # Install a specified package
 brew_install() {
   brew install $1
+
+  if [ $1 = cmake]; then
+    brew link --overwrite cmake
+  fi
 }
 
 #-------------------------------------------------------------------------------
@@ -95,8 +87,20 @@ install_python_dependencies() {
 
 #-------------------------------------------------------------------------------
 
+# Installs system dependencies
+install_system_depencies() {
+  declare -a dependencies=('python3' 'cmake');
+
+  for i in "${dependencies[@]}"; do
+    verify_installed $i
+  done
+}
+
+#-------------------------------------------------------------------------------
+
 # Build the C++ code
 build_cpp() {
+  create_folder
   cmake .
   make
 }
@@ -111,14 +115,17 @@ launch_app() {
 
 #-------------------------------------------------------------------------------
 
-create_bin_folder
+# Make sure that brew is installed
+install_brew
 
-install_cmake
+# Install system dependencies such as python3 and cmake
+install_system_depencies
 
+# Install python3 packages
+install_python_dependencies
+
+# Build the C++ app
 build_cpp
 
+# Launch the app
 launch_app
-
-verify_installed python3
-
-install_python_dependencies
