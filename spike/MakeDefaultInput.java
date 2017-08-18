@@ -110,9 +110,15 @@ public static Point[] input(int a, int b) {
 	public static Point[] polynomial(int a, int b) {
 		Point[] points = new Point[b];
 		Point p;
+		int upper = 5;
+		int lower = -5;
+		float y;
 
 		for (int x = a; x < b; x++) {
-			p = new Point(x, (float) Math.pow(x, 2));
+			y = (float) Math.pow(x, 2);
+			y = y + random.nextInt(upper - lower) + lower;
+
+			p = new Point(x, y);
 			points[x] = p;
 		}
 
