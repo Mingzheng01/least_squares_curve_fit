@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}What Is Curve Fitting?}{2}
+\contentsline {subsection}{\numberline {1.1}What is it?}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {subsection}{\numberline {1.2}Why do it?}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{4}
+\contentsline {paragraph}{}{5}
+\contentsline {section}{\numberline {2}What is Least Squares?}{7}
+\contentsline {subsection}{\numberline {2.1}Linear Regression}{7}
+\contentsline {subsection}{\numberline {2.2}Non-linear Regression}{7}
+\contentsline {section}{\numberline {3}Linear Fit}{7}
+\contentsline {section}{\numberline {4}Polynomial Fit}{7}
+\contentsline {section}{\numberline {5}Exponential Fit}{7}
+\contentsline {section}{\numberline {6}Logarithmic Fit}{7}
+\contentsline {section}{\numberline {7}Sinusoidal Fit}{7}
+\contentsline {section}{\numberline {8}References}{7}
