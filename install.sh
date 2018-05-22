@@ -1,3 +1,4 @@
+set -e
 
 # Creates a folder with a specified name if it does not exist already
 create_folder() {

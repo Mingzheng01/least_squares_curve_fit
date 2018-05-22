@@ -8,12 +8,12 @@ properties_config = configparser.ConfigParser()
 properties_config.read("../../properties.ini")
 
 # All directories necessary for program to run
-in_file_directory = properties_config.get('directories', 'input_directory')
-out_file_directory = properties_config.get('directories', 'output_directory')
-log_output_directory = properties_config.get('directories', 'log_output_directory')
-exp_output_directory = properties_config.get('directories', 'exp_output_directory')
+in_file_directory     = properties_config.get('directories', 'input_directory')
+out_file_directory    = properties_config.get('directories', 'output_directory')
+log_output_directory  = properties_config.get('directories', 'log_output_directory')
+exp_output_directory  = properties_config.get('directories', 'exp_output_directory')
 poly_output_directory = properties_config.get('directories', 'poly_output_directory')
-sin_output_directory = properties_config.get('directories', 'sin_output_directory')
+sin_output_directory  = properties_config.get('directories', 'sin_output_directory')
 
 # Get op codes for running different curve fits
 EXPONENTIAL_LEAST_SQUARES_OP_CODE = str(properties_config.get('curve_fit_op_codes','EXPONENTIAL_LEAST_SQUARES_OP_CODE'))

@@ -92,7 +92,7 @@ class GraphPage(tk.Frame):
 		buttons_frame.pack()
 
 		# Show canvas
-		canvas.show()
+		canvas.draw()
 
 
 # Options Frame Class that will go within the Graph Page
